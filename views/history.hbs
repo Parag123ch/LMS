@@ -1,0 +1,31 @@
+<div class="header">History
+</div>
+<table cellspacing="0">
+  <tr>
+    <th>Username</th>
+    <th>BookId</th>
+    <th>Status</th>
+  </tr>
+  {{#each data}}
+    <tr id={{this.id}}>
+      <td>{{this.username}}</td>
+      <td>{{this.bookid}}</td>
+      <td style="text-align:center">
+        {{#if (eq this.status 2)}}
+          Pending
+        {{/if}}
+        {{#if (eq this.status 1)}}
+          {{#if this.returned}}
+            Returned
+          {{else}}
+            Accepted
+          {{/if}}
+        {{/if}}
+        {{#if (eq this.status 0)}}
+          Rejected
+        {{/if}}
+
+      </td>
+    </tr>
+  {{/each}}
+</table>

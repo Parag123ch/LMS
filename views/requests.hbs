@@ -1,0 +1,44 @@
+<div class="header">Pending Requests
+</div>
+<table cellspacing="0">
+  <tr>
+    <th>Username</th>
+    <th>BookId</th>
+    <th></th>
+  </tr>
+  {{#each data}}
+    <tr id={{this.id}}>
+      <td>{{this.username}}</td>
+      <td>{{this.bookid}}</td>
+      {{#if (eq this.status 2)}}
+        <td id="action"><button
+            type="button"
+            class="btn btn-danger"
+            id="btn"
+            onclick="checkingId({{this.id}},{{this.bookid}})"
+          >Deny</button>
+          <button
+            type="button"
+            class="btn btn-success"
+            id="btn"
+            onclick="gettingId({{this.id}},{{this.bookid}})"
+          >Approve</button></td>
+      {{/if}}
+      {{#unless this.status}}
+        <td style="text-align: center;">Denied</td>
+      {{/unless}}
+      {{#if (eq this.status 1)}}
+        {{#if this.returned}}
+          <td style="text-align: center;">Returned</td>
+        {{else}}
+          <td id="action"><button
+              type="button"
+              class="btn btn-success"
+              id="btn"
+              onclick="returned({{this.id}},{{this.bookid}})"
+            >Return</button></td>
+        {{/if}}
+      {{/if}}
+    </tr>
+  {{/each}}
+</table>
